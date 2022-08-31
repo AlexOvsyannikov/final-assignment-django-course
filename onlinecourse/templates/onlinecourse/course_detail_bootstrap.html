@@ -53,7 +53,7 @@
                             {% if user.is_authenticated %}
                                 {% if lesson.question_set.all %}
                                 <div class="container-fluid">
-                                    <form id="question_form_{{ lesson.id }}" action="" method="post">
+                                    <form id="question_form_{{ lesson.id }}" action="{% url 'onlinecourse:submit' course.id  %}" method="post">
                                         <div class="card-columns-vertical">
                                             {% for question in lesson.question_set.all%}
                                                 <div class="card">
@@ -62,7 +62,7 @@
                                                     <div class="form-group">
                                                         {%  for choice in  question.choice_set.all%}
                                                             <div class="form-check">
-                                                                <input type="checkbox" name="choice_{{ choice.id }}" id="{{ choice.id }}" class="form-check-input">
+                                                                <input type="checkbox" name="{{ choice.id }}" id="{{ choice.id }}" class="form-check-input">
                                                                 <label class="form-check-label" for="{{ choice.id }}">{{ choice.choice_text }}</label>
                                                             </div>
                                                         {% endfor %}
