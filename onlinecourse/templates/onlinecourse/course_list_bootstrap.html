@@ -50,8 +50,12 @@
                             <p class="card-text">{{ course.description}}</p>
                             <form action="{% url 'onlinecourse:enroll' course.id %}" method="post">
                                   {% csrf_token %}
+                                {% if user.is_authenticated %}
                                   <input class="btn btn-primary"  type="submit"
                                          value="{% if course.is_enrolled %}Enter{% else %}Enroll{% endif %} ">
+                                {% else %}
+                                    <a class="btn btn-primary" href="{% url 'onlinecourse:course_details' course.id%}">Details</a>
+                                {% endif %}
                             </form>
                           </div>
                         </div>
